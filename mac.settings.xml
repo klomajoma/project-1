@@ -1,0 +1,58 @@
+<settings>
+
+	<!-- $Id: mac.settings.xml 29 2013-10-09 10:24:57Z hal $ -->
+	<!-- $URL: https://k0d.enigio.com/svn/trunk/7.Configuration/Settings/maven/mac.settings.xml $ -->
+	<!-- Enigio maven settings -->
+
+	<servers>
+		<server>
+			<id>enigio</id>
+			<username>readonly</username>
+			<password>f94802d4d</password>
+		</server>
+	</servers>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+
+		<profile>
+			<id>standard-extra-repos</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+			<repositories>
+
+				<repository>
+					<id>enigio</id>
+					<name>Enigio repository for Maven</name>
+					<url>https://mvn.enigio.com/</url>
+					<layout>default</layout>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+						<updatePolicy>daily</updatePolicy>
+						<checksumPolicy>fail</checksumPolicy>
+					</snapshots>
+				</repository>
+			</repositories>
+
+			<properties>
+				<downloadSources>true</downloadSources>
+				<downloadJavadocs>true</downloadJavadocs>
+			</properties>
+
+		</profile>
+	</profiles>
+
+</settings>
+
+
+
