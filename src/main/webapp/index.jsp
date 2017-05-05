@@ -195,6 +195,10 @@ FEEDER: <%=com.enigio.voco.VocoStart.VOCO %>
                 <!-- Add Data -->
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8">
                 
+                    <button style="margin-left: 5px;" type="button" class="btn btn-sm btn-primary pull-right" role="button">
+                        View Raw JSON
+                    </button>
+                    
                     <button type="button" class="btn btn-sm btn-primary pull-right" role="button">
                         <span class="glyphicon glyphicon-plus"></span> / <span class="glyphicon glyphicon-minus"></span> &nbsp; Manage Data
                     </button>
@@ -256,7 +260,7 @@ FEEDER: <%=com.enigio.voco.VocoStart.VOCO %>
                                     </tr>
                                     
                                     <tr>
-                                        <td><a href="#">Zlatan Ibrahimović</a></td>
+                                        <td><a href="#">Zlatan Ibrahimovic</a></td>
                                         <td>3</td>
                                         <td>1</td>
                                         <td>90</td>
