@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #Fri May 05 11:04:31 CEST 2017
+=======
+#Fri May 05 11:04:22 CEST 2017
+>>>>>>> 7a354fb5fec69f631b35e7fd24aba700f99f1a2a
 org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.8
 eclipse.preferences.version=1
 org.eclipse.jdt.core.compiler.source=1.8
