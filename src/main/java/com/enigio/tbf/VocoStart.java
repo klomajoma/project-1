@@ -6,17 +6,18 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 public class VocoStart {
-	
-	public static String VOCO = "";
+
+	public static String VOCO = "Hej voco";
 	public static String TEST = "";
+	public static HttpResponse<String> jsonResponse;
 
-	HttpResponse<JsonNode> jsonResponse = Unirest.post("http://httpbin.org/post")
-			.header("accept", "application/json")
-			.queryString("apiKey", "123")
-			.field("parameter", "value")
-			.field("foo", "bar")
-			.asJson();
+	public static void run() {
+		try {
+			jsonResponse = Unirest.get("http://httpbin.org/get").asString();
 
-	public VocoStart() throws UnirestException {
+		} catch (UnirestException e) {
+			e.printStackTrace();
+		}
 	}
+
 }

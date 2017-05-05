@@ -1,9 +1,12 @@
-<!-- $TB_FEEDER
+<%@ page import="com.enigio.tbf.VocoStart" %>
+$TB_FEEDER
 <hr>
 
 FEEDER: <%=com.enigio.tbf.VocoStart.VOCO %>
+      <%VocoStart.run();%>
+JSON: <%=VocoStart.jsonResponse.getBody() %>
 
-<hr> -->
+<hr>
 
 <!DOCTYPE HTML>
 
