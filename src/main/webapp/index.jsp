@@ -1,7 +1,7 @@
 <!-- $TB_FEEDER
 <hr>
 
-FEEDER: <%=com.enigio.tbf.VocoStart.VOCO %>
+FEEDER: 
 
 <hr> -->
 
@@ -122,6 +122,8 @@ FEEDER: <%=com.enigio.tbf.VocoStart.VOCO %>
     </head>
     
     <body>
+        
+        <%=com.enigio.tbf.VocoStart.TEST%>
         
         <div id="pageHeader">
             
