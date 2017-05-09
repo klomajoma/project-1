@@ -15,6 +15,7 @@ public class Feeder {
     public String nameOfFeeder;
     public HttpResponse<JsonNode> jsonResponse;
     public String prettyJsonString;
+    public String htmlJsonArray[]; 
 
     public Feeder( String name, String link) {
 
@@ -29,6 +30,10 @@ public class Feeder {
             JsonParser jp = new JsonParser();
             JsonElement je = jp.parse(jsonResponse.getBody().toString());
             prettyJsonString = gson.toJson(je);
+            
+            //Making the json string accessible for our HTML table.
+            String htmlJson = jsonResponse.getBody().getObject().toString().replaceAll("[{}\"]","");
+            htmlJsonArray = htmlJson.split("[,:\"]"); 
 
         } catch (UnirestException e) {
 

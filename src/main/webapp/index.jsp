@@ -2,20 +2,7 @@
 <%@ page import="com.mashape.unirest.http.JsonNode" %>
 <%@ page import="com.mashape.unirest.http.HttpResponse" %>
 <%DataTruck.run();%>
-<%
-   
-        //Global Variables:
-   
-        //Formatting JSON Data as Strings.
-        String b = DataTruck.feeders.get(0).getJsonResponse().getBody().getObject().toString().replaceAll("[{}\"]","");
-        String c = DataTruck.feeders.get(1).getJsonResponse().getBody().getObject().toString().replaceAll("[{}\"]","");
-        String d = DataTruck.feeders.get(2).getJsonResponse().getBody().getObject().toString().replaceAll("[{}\"]","");
-                                                                                                  
-        String[] sArr = b.split("[,:\"]"); //Creating string array containing data...
-        String[] sArr2 = c.split("[,:\"]"); //Creating string array containing data...
-        String[] sArr3 = d.split("[,:\"]"); //Creating string array containing data... 
-        
-%>
+
 <!DOCTYPE HTML>
 
 <html>
@@ -265,7 +252,7 @@
                 <br>
             
                 <!-- HIDDEN TABLE: Data Numbers -->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 allJson">
                 
                     <!-- You can constrain the columns if you want -->
                     <div class="row">
@@ -276,6 +263,7 @@
                         <div class="col-lg-10 col-md-10 col-sm-10">
 
                             <!-- 
+
                                 The table class adds nice spacing and the other classes add additional style:
 
                                 table-striped           - Variate the color for every other <td>
@@ -283,56 +271,141 @@
                                 table-hover             - Change color when hovering a <td> 
 
                             -->
+                            <%
+                            int s = DataTruck.feeders.size();
+                            for (int i = 0; i < s ; i++) {
+                                int jsonArrSize = DataTruck.feeders.get(i).htmlJsonArray.length-2;
+                                if ( i == 0 ) {
+                            
+                            %>
+                            
+                                <table id="showingJson" class="<%=DataTruck.feeders.get(i).nameOfFeeder%> table table-bordered table-striped table-hover allJsonContainers">
 
-                            <table class="table table-bordered table-striped table-hover">
-                                
-                                <thead>
-                                    <tr>
-                                    <td colspan="4">Exchange Rates, Updated <%= sArr[1]%></td>
-                                    </tr>
-                                </thead>
-                                
-                                <tbody>
-                                    
-                                    <tr>
+                                    <thead>
+                                        <tr>
+                                        <td colspan="2">Exchange Rates, Updated <%=DataTruck.feeders.get(i).htmlJsonArray[1]%></td>
+                                        </tr>
+                                    </thead>
 
-                                        <!-- You can adjust the width of table columns as well -->
-                                        <th class="col-md-2"></th>
+                                    <tbody>
 
-                                        <!-- Use text alignment like text-center or text-right -->
-                                        <th class="text-center"><%= sArr[sArr.length-1]%></th>
-                                        <th class="text-center"><%= sArr2[sArr2.length-1]%></th>
-                                        <th class="text-center"><%= sArr3[sArr3.length-1]%></th>
-                                    </tr>
-                                    
-                                    <%
-                                       
-                                       for (int i = 3; i < sArr.length-2; i++){
-                                    
-       
-                                            if( i%2 != 0 ) {
-                                    
-                                                %>
-                                                <tr>
-                                                <td><a href="https://www.google.se/search?q=<%=sArr[i]%>+Currency"><%=sArr[i]%> </a></td>   
+                                        <tr>
+
+                                            <!-- You can adjust the width of table columns as well -->
+                                            <th class="col-md-2"></th>
+
+                                            <!-- Use text alignment like text-center or text-right -->
+                                            <th class="text-center">
+                                                <%=DataTruck.feeders.get(i).htmlJsonArray[DataTruck.feeders.get(i).htmlJsonArray.length-1]%>
+                                            </th>
+
+                                        </tr>
+                                        
+                                        <% 
+                                           
+                                           for (int j = 3; j < jsonArrSize; j++) { 
+                                        
+                                            if ( j%2 != 0) {
+                                        %>
+                                        
+                                        <tr>
+                                            <td>
+                                                
+                                                <a href="https://www.google.se/search?q=<%=DataTruck.feeders.get(i).htmlJsonArray[i]%>+Currency">
                                                     
-                                            <%           
-                                            } else {
-                                            %>
-                                                <td><%=sArr[i]%></td>
-                                                <td><%=sArr2[i]%></td>
-                                                <td><%=sArr3[i]%></td>
-                                                </tr>
-                                            <%
-                                            }
-                                    
+                                                    <%=DataTruck.feeders.get(i).htmlJsonArray[j]%>
+                                                        
+                                                </a>
+                                                    
+                                            </td>  
+                                        <% 
+                                           } else  {
+                                           
+                                           %>        
+                                                
+                                            <td><%=DataTruck.feeders.get(i).htmlJsonArray[j]%></td>
+                                        </tr>
+                                                
+                                        <% 
+                                           
+                                           } 
+                                           
                                         }
-                                       
-                                    %>
-                                    
-                                </tbody>
+                                           
+                                        %>
+
+                                    </tbody>
+
+                                </table>
+
+                            <%
+                               } else { %>
+                               
+
+                                <table class="<%=DataTruck.feeders.get(i).nameOfFeeder%> table table-bordered table-striped table-hover allJsonContainers">
+
+                                    <thead>
+                                        <tr>
+                                        <td colspan="2">Exchange Rates, Updated <%=DataTruck.feeders.get(i).htmlJsonArray[1]%></td>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr>
+
+                                            <!-- You can adjust the width of table columns as well -->
+                                            <th class="col-md-2"></th>
+
+                                            <!-- Use text alignment like text-center or text-right -->
+                                            <th class="text-center">
+                                                <%=DataTruck.feeders.get(i).htmlJsonArray[DataTruck.feeders.get(i).htmlJsonArray.length-1]%>
+                                            </th>
+
+                                        </tr>
+                                        
+                                        <% 
+                                           for (int j = 3; j < jsonArrSize; j++) { 
+                                        
+                                            if ( j%2 != 0) {
+                                        %>
+                                        
+                                        <tr>
+                                            <td>
+                                                
+                                                <a href="https://www.google.se/search?q=<%=DataTruck.feeders.get(i).htmlJsonArray[i]%>+Currency">
+                                                    
+                                                    <%=DataTruck.feeders.get(i).htmlJsonArray[j]%>
+                                                        
+                                                </a>
+                                                    
+                                            </td>  
+                                        <% 
+                                           } else  {
+                                           
+                                           %>        
+                                                
+                                            <td><%=DataTruck.feeders.get(i).htmlJsonArray[j]%></td>
+                                        </tr>
+                                                
+                                        <% 
+                                           
+                                           } 
+                                           
+                                        }
+                                           
+                                        %>
+
+                                    </tbody>
+
+                                </table>
                                 
-                            </table>
+                                <%
+                               }
+                                            
+                            }
+                            
+                            %>
                             
                         </div>
                         
@@ -355,7 +428,7 @@
                         <div id="jsonLoopDisplayer" class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
                         
                             <%
-                               int s = DataTruck.feeders.size();
+                              
                                for (int i = 0; i < s; i++ ){
                             
                                     if( i == 0 ) {
