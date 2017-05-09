@@ -3,6 +3,7 @@
 <%@ page import="com.mashape.unirest.http.HttpResponse" %>
 <%DataTruck.run();%>
 <%
+   
         //Global Variables:
    
         //Formatting JSON Data as Strings.
@@ -220,8 +221,8 @@
                 <br>
                 <br>
             
-                <!-- Data Numbers -->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <!-- HIDDEN TABLE: Data Numbers -->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden">
                 
                     <!-- You can constrain the columns if you want -->
                     <div class="row">
@@ -298,6 +299,28 @@
                     </div>
                     
                 </div>
+                    
+                <!-- SHOWING: Raw JSON Container -->    
+                <div class="container">
+                
+                    <div class="row">
+                    
+                        <!-- DUMMY ELEMENT -->
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0"></div>
+                        
+                        <!-- JSON Displayer -->
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 well">
+                        
+                            <%=DataTruck.feeders.get(0).getJsonResponse().getBody()%>
+                        
+                        </div>
+                        
+                        <!-- DUMMY ELEMENT -->
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0"></div>
+                        
+                    </div>
+                    
+                </div>
                 
                 <!-- DUMMY ELEMENT -->
                 <div class="col-lg-3 col-md-2 col-sm-1 col-xs-0"></div>
@@ -306,19 +329,20 @@
                 <div class="col-lg-6 col-md-8 col-sm-10 col-xs-6">
 
                     <!-- Button Group! -->
-                    <div class="btn-group btn-group-lg" role="group">
+                    <div class="btn-group btn-group-sm" role="group">
 
-                        <button type="button" class="btn btn-primary active" role="button">
-                            Currency Exchange Rates
-                        </button>
-
-                        <button type="button" class="btn btn-primary" role="button">
-                            Football
-                        </button>
-
-                        <button type="button" class="btn btn-primary" role="button">
-                            Weather
-                        </button>
+                        
+                        <%
+                               int s = DataTruck.feeders.size();
+                               for (int i = 0; i < s; i++ ){
+                            
+                                   %><button type="button" class="<%=DataTruck.feeders.get(i).nameOfFeeder%> btn btn-primary active" role="button">
+                                    <%=DataTruck.feeders.get(i).nameOfFeeder%>
+                                    </button><%
+                            
+                                }
+                               
+                        %>
 
                     </div>
                 
