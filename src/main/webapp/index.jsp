@@ -115,15 +115,35 @@
         <!-- Our Scripts -->
         <script>
             
-            // Button Selection Script.
+            // JSON Button Selection Script.
             $(document).ready(function(){
                 
+                var clickCheck = 0;
+                
+                /**
+                * Shows and hides the "allJson" div. Changes button text.
+                **/
                 $("#toggleJson").click(function(){
                 
                     $(".allJson").toggleClass("hidden");
+                    
+                    if (!clickCheck) {
+                        
+                        $("#viewJsonBtn").text("Show Table");
+                        clickCheck = 1;
+                        
+                    } else {
+                        
+                        $("#viewJsonBtn").text("View Raw JSON");
+                        clickCheck = 0;
+                        
+                    }
                 
                 }) 
                 
+                /**
+                * Toggle "active" class on all primary buttons.
+                **/
                 $(".btn-primary").click(function(){
                 
                     $(".btn-primary").removeClass("active");
@@ -136,6 +156,9 @@
                 //Showing active:
                 $("#showingJson").show();
                 
+                /**
+                * Showing and hiding individual JSON divs connected to their buttons.
+                **/
                 $(".allJsonButtons").click(function(){
                     
                     $(".allJsonContainers").hide();
@@ -226,7 +249,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8">
                 
                     <button id="toggleJson" style="margin-left: 5px;" type="button" class="btn btn-sm btn-primary pull-right" role="button">
-                        View Raw JSON
+                        <b id="viewJsonBtn" style="font-weight: 500;">View Raw JSON</b>
                     </button>
                     
                     <button type="button" class="btn btn-sm btn-primary pull-right" role="button">
@@ -329,7 +352,7 @@
                         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0"></div>
                         
                         <!-- JSON Displayer -->
-                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 well">
+                        <div id="jsonLoopDisplayer" class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
                         
                             <%
                                int s = DataTruck.feeders.size();
@@ -338,13 +361,13 @@
                                     if( i == 0 ) {
                             
                                        %><div id="showingJson" class="<%=DataTruck.feeders.get(i).nameOfFeeder%> well allJsonContainers">
-                                        <%=DataTruck.feeders.get(i).getJsonResponse().getBody()%>
+                                        <%=DataTruck.feeders.get(i).prettyJsonString%>
                                             </div><%
                                                  
                                     } else {
                                                  
                                         %><div class="<%=DataTruck.feeders.get(i).nameOfFeeder%> well allJsonContainers">
-                                        <%=DataTruck.feeders.get(i).getJsonResponse().getBody()%>
+                                        <%=DataTruck.feeders.get(i).prettyJsonString%>
                                             </div><%
                                             
                                     }
