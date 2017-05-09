@@ -1,10 +1,17 @@
-<!-- $TB_FEEDER
-<hr>
-
-FEEDER: 
-
-<hr> -->
-
+<%@ page import="com.enigio.tbf.VocoStart" %>
+<%VocoStart.run();%>
+<%
+        //Global Variables:
+   
+        //Formatting JSON Data as Strings.
+        String b = VocoStart.jsonResponse.getBody().getObject().toString().replaceAll("[{}\"]",""); 
+        String c = VocoStart.jsonResponse2.getBody().getObject().toString().replaceAll("[{}\"]","");                                                                  String d = VocoStart.jsonResponse3.getBody().getObject().toString().replaceAll("[{}\"]",""); 
+                                                                                                  
+        String[] sArr = b.split("[,:\"]"); //Creating string array containing data...
+        String[] sArr2 = c.split("[,:\"]"); //Creating string array containing data...
+        String[] sArr3 = d.split("[,:\"]"); //Creating string array containing data... 
+        
+%>
 <!DOCTYPE HTML>
 
 <html>
@@ -36,9 +43,7 @@ FEEDER:
             footer {
                 
                 color: #fff;
-                position: absolute;
                 width: 100%;
-                bottom: 0px;
                 text-align: center;
                 background-color: #204060;
                 font-size: 12px;
@@ -237,7 +242,7 @@ FEEDER:
                                 
                                 <thead>
                                     <tr>
-                                    <td colspan="4">Goalmakers - Manchester vs Liverpool</td>
+                                    <td colspan="4">Exchange Rates, Updated <%= sArr[1]%></td>
                                     </tr>
                                 </thead>
                                 
@@ -249,31 +254,35 @@ FEEDER:
                                         <th class="col-md-2"></th>
 
                                         <!-- Use text alignment like text-center or text-right -->
-                                        <th class="text-center">Goals</th>
-                                        <th class="text-center">Assists</th>
-                                        <th class="text-center">Minutes</th>
+                                        <th class="text-center"><%= sArr[sArr.length-1]%></th>
+                                        <th class="text-center"><%= sArr2[sArr2.length-1]%></th>
+                                        <th class="text-center"><%= sArr3[sArr3.length-1]%></th>
                                     </tr>
                                     
-                                    <tr>
-                                        <td><a href="#">Jesse Lingard</a></td>
-                                        <td>1</td>
-                                        <td>0</td>
-                                        <td>30</td>
-                                    </tr>
+                                    <%
+                                       
+                                       for (int i = 3; i < sArr.length-2; i++){
                                     
-                                    <tr>
-                                        <td><a href="#">Zlatan Ibrahimovic</a></td>
-                                        <td>3</td>
-                                        <td>1</td>
-                                        <td>90</td>
-                                    </tr>
+       
+                                            if( i%2 != 0 ) {
                                     
-                                    <tr>
-                                        <td><a href="#">Wayne Rooney</a></td>
-                                        <td>0</td>
-                                        <td>2</td>
-                                        <td>60</td>
-                                    </tr>
+                                                %>
+                                                <tr>
+                                                <td><a href="https://www.google.se/search?q=<%=sArr[i]%>+Currency"><%=sArr[i]%> </a></td>   
+                                                    
+                                            <%           
+                                            } else {
+                                            %>
+                                                <td><%=sArr[i]%></td>
+                                                <td><%=sArr2[i]%></td>
+                                                <td><%=sArr3[i]%></td>
+                                                </tr>
+                                            <%
+                                            }
+                                    
+                                        }
+                                       
+                                    %>
                                     
                                 </tbody>
                                 
@@ -297,12 +306,12 @@ FEEDER:
                     <!-- Button Group! -->
                     <div class="btn-group btn-group-lg" role="group">
 
-                        <button type="button" class="btn btn-primary" role="button">
-                            Stock Market
+                        <button type="button" class="btn btn-primary active" role="button">
+                            Currency Exchange Rates
                         </button>
 
-                        <button type="button" class="btn btn-primary active" role="button">
-                            Football Games
+                        <button type="button" class="btn btn-primary" role="button">
+                            Football
                         </button>
 
                         <button type="button" class="btn btn-primary" role="button">
