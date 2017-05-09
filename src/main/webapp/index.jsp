@@ -118,11 +118,31 @@
             // Button Selection Script.
             $(document).ready(function(){
                 
+                $("#toggleJson").click(function(){
+                
+                    $(".allJson").toggleClass("hidden");
+                
+                }) 
+                
                 $(".btn-primary").click(function(){
                 
                     $(".btn-primary").removeClass("active");
                 
                 }) 
+                
+                //Hiding all JSON containers.
+                $(".allJsonContainers").hide();
+                
+                //Showing active:
+                $("#showingJson").show();
+                
+                $(".allJsonButtons").click(function(){
+                    
+                    $(".allJsonContainers").hide();
+                    $("."+this.name).fadeIn();
+                
+                }) 
+                
                 
             });
         
@@ -205,7 +225,7 @@
                 <!-- Add Data -->
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8">
                 
-                    <button style="margin-left: 5px;" type="button" class="btn btn-sm btn-primary pull-right" role="button">
+                    <button id="toggleJson" style="margin-left: 5px;" type="button" class="btn btn-sm btn-primary pull-right" role="button">
                         View Raw JSON
                     </button>
                     
@@ -301,7 +321,7 @@
                 </div>
                     
                 <!-- SHOWING: Raw JSON Container -->    
-                <div class="container">
+                <div class="container allJson hidden">
                 
                     <div class="row">
                     
@@ -311,7 +331,28 @@
                         <!-- JSON Displayer -->
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 well">
                         
-                            <%=DataTruck.feeders.get(0).getJsonResponse().getBody()%>
+                            <%
+                               int s = DataTruck.feeders.size();
+                               for (int i = 0; i < s; i++ ){
+                            
+                                    if( i == 0 ) {
+                            
+                                       %><div id="showingJson" class="<%=DataTruck.feeders.get(i).nameOfFeeder%> well allJsonContainers">
+                                        <%=DataTruck.feeders.get(i).getJsonResponse().getBody()%>
+                                            </div><%
+                                                 
+                                    } else {
+                                                 
+                                        %><div class="<%=DataTruck.feeders.get(i).nameOfFeeder%> well allJsonContainers">
+                                        <%=DataTruck.feeders.get(i).getJsonResponse().getBody()%>
+                                            </div><%
+                                            
+                                    }
+                                    
+                            
+                                }
+                               
+                            %>
                         
                         </div>
                         
@@ -333,10 +374,9 @@
 
                         
                         <%
-                               int s = DataTruck.feeders.size();
                                for (int i = 0; i < s; i++ ){
                             
-                                   %><button type="button" class="<%=DataTruck.feeders.get(i).nameOfFeeder%> btn btn-primary active" role="button">
+                                   %><button type="button" name="<%=DataTruck.feeders.get(i).nameOfFeeder%>" class=" btn btn-primary active allJsonButtons" role="button">
                                     <%=DataTruck.feeders.get(i).nameOfFeeder%>
                                     </button><%
                             

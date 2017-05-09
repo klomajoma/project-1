@@ -11,9 +11,9 @@ public class DataTruck {
 	public static void run() {
 		
 		feeders = new ArrayList<Feeder>();
-		feeders.add(new Feeder("Euro data","http://api.fixer.io/latest"));
-		feeders.add(new Feeder("USD data","http://api.fixer.io/latest?base=USD"));
-		feeders.add(new Feeder("SEK data","http://api.fixer.io/latest?base=SEK"));
+		feeders.add(new Feeder("EUR","http://api.fixer.io/latest"));
+		feeders.add(new Feeder("USD","http://api.fixer.io/latest?base=USD"));
+		feeders.add(new Feeder("SEK","http://api.fixer.io/latest?base=SEK"));
 	}
 
 }
