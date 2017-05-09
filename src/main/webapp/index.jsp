@@ -1,11 +1,14 @@
-<%@ page import="com.enigio.tbf.VocoStart" %>
-<%VocoStart.run();%>
+<%@ page import="com.enigio.tbf.DataTruck" %>
+<%@ page import="com.mashape.unirest.http.JsonNode" %>
+<%@ page import="com.mashape.unirest.http.HttpResponse" %>
+<%DataTruck.run();%>
 <%
         //Global Variables:
    
         //Formatting JSON Data as Strings.
-        String b = VocoStart.jsonResponse.getBody().getObject().toString().replaceAll("[{}\"]",""); 
-        String c = VocoStart.jsonResponse2.getBody().getObject().toString().replaceAll("[{}\"]","");                                                                  String d = VocoStart.jsonResponse3.getBody().getObject().toString().replaceAll("[{}\"]",""); 
+        String b = DataTruck.feeders.get(0).getJsonResponse().getBody().getObject().toString().replaceAll("[{}\"]","");
+        String c = DataTruck.feeders.get(1).getJsonResponse().getBody().getObject().toString().replaceAll("[{}\"]","");
+        String d = DataTruck.feeders.get(2).getJsonResponse().getBody().getObject().toString().replaceAll("[{}\"]","");
                                                                                                   
         String[] sArr = b.split("[,:\"]"); //Creating string array containing data...
         String[] sArr2 = c.split("[,:\"]"); //Creating string array containing data...
@@ -128,8 +131,7 @@
     
     <body>
         
-        <%=com.enigio.tbf.VocoStart.TEST%>
-        
+
         <div id="pageHeader">
             
             <div class="container">
