@@ -15,6 +15,12 @@ public class DataTruck {
 		feeders.add(new Feeder("USD","http://api.fixer.io/latest?base=USD"));
 		feeders.add(new Feeder("SEK","http://api.fixer.io/latest?base=SEK"));
 	}
+	
+	public static void addData(String name, String link) {
+		
+		feeders.add(new Feeder(name, link));
+		
+	}
 
 }
 

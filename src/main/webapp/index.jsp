@@ -152,6 +152,27 @@
                     $("."+this.name).fadeIn();
                 
                 }) 
+
+                /**
+                * Shows and hides the "addDataContainer" div. Changes button text.
+                **/
+                $("#addDataBtn").click(function(){
+                
+                    $("#addDataContainer").toggleClass("hidden");
+                    
+                    if (!clickCheck) {
+                        
+                        $("#addDataBtnTxt").text("Hide Data Adder");
+                        clickCheck = 1;
+                        
+                    } else {
+                        
+                        $("#addDataBtnTxt").text("Add Data");
+                        clickCheck = 0;
+                        
+                    }
+                
+                }) 
                 
                 
             });
@@ -239,8 +260,8 @@
                         <b id="viewJsonBtn" style="font-weight: 500;">View Raw JSON</b>
                     </button>
                     
-                    <button type="button" class="btn btn-sm btn-primary pull-right" role="button">
-                        <span class="glyphicon glyphicon-plus"></span> / <span class="glyphicon glyphicon-minus"></span> &nbsp; Manage Data
+                    <button id="addDataBtn" type="button" class="btn btn-sm btn-primary pull-right" role="button">
+                        <span class="glyphicon glyphicon-plus"></span> &nbsp; <b id="addDataBtnTxt" style="font-weight: 500;">Add Data</b>
                     </button>
                     
                 </div>
@@ -250,8 +271,61 @@
                 
                 <br>
                 <br>
+                
+                <!-- Popup: Manage Data -->
+                <div id="addDataContainer" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden">
+                
+                    <!-- You can constrain the columns if you want -->
+                    <div class="row well">
+                        
+                        <h4 style="text-align: center;"> Please specify the following details of your data: </h4>
+                        
+                        <br>
+                        
+                        <form action="index.jsp" method="post">
+                        
+                            <div class="input-group input-group-md">
+
+                                <span class="input-group-addon"> Name of Data </span>
+                                <input name="dataName" type="text" class="form-control" placeholder="e.g. ManchesterVsLiverpool, BitcoinData, WeatherInSpain, etc">
+
+                            </div>
+
+                            <br>
+
+                            <div class="input-group input-group-md">
+
+                                <span class="input-group-addon"> API Link </span>
+                                <input name="apiLink" type="text" class="form-control" placeholder="e.g. http://api.fixer.io/latest">
+
+                            </div>
+
+                            <br>
+
+                            <!-- DUMMY ELEMENT -->
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
+
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                                <button type="submit" class="btn btn-md btn-primary">
+
+                                    <span class="glyphicon glyphicon-plus"></span> 
+                                    Add This Data 
+
+                                </button>
+
+                            </div>
+                            
+                        </form>
+                        
+                        <!-- DUMMY ELEMENT -->
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
+                    
+                    </div>
+                    
+                </div>
             
-                <!-- HIDDEN TABLE: Data Numbers -->
+                <!-- TABLE: Data Numbers -->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 allJson">
                 
                     <!-- You can constrain the columns if you want -->
