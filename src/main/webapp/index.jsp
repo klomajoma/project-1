@@ -1,7 +1,14 @@
 <%@ page import="com.enigio.tbf.DataTruck" %>
+<%@ page import="com.enigio.tbf.Feeder" %>
 <%@ page import="com.mashape.unirest.http.JsonNode" %>
 <%@ page import="com.mashape.unirest.http.HttpResponse" %>
 <%DataTruck.run();%>
+    
+<%
+
+   session.setAttribute("feeders", DataTruck.feeders);
+   
+%>
 
 <!DOCTYPE HTML>
 
@@ -183,7 +190,9 @@
     
     <body>
         
-
+        <p><%= session.getAttribute("feeders") %></p>
+            
+            
         <div id="pageHeader">
             
             <div class="container">
@@ -282,7 +291,7 @@
                         
                         <br>
                         
-                        <form action="index.jsp" method="post">
+                        <form action="/" method="post">
                         
                             <div class="input-group input-group-md">
 
@@ -317,6 +326,24 @@
                             </div>
                             
                         </form>
+                        
+                        
+                        <!-- JAVA FORM HANDLER -->
+                        <jsp:useBean id="DataTruck" scope="page" class="com.enigio.tbf.DataTruck" />
+
+                        <%
+                           
+                           if  ( request.getParameter("dataName") != null && request.getParameter("apiLink") != null ) {
+                           
+                                String name = request.getParameter("dataName");
+                                String link = request.getParameter("apiLink");
+                           
+                                DataTruck.addData(name,link);
+                            
+                           }
+                           
+                        %>
+                        
                         
                         <!-- DUMMY ELEMENT -->
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>

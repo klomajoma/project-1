@@ -19,7 +19,7 @@ public class DataTruck {
 	public static void addData(String name, String link) {
 		
 		feeders.add(new Feeder(name, link));
-		
+
 	}
 
 }
