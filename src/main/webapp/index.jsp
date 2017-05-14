@@ -116,7 +116,7 @@
             
             // JSON Button Selection Script.
             $(document).ready(function(){
-                
+               
                 var clickCheck = 0;
                 
                 /**
@@ -203,7 +203,7 @@
 
                 <div class="page-header" style="text-align: center;">
 
-                    <h1> DataTruck <br><small style="color: #fff;">Display info from the stock market, football games or the weather.</small></h1>
+                    <h1> DataTruck <br><small style="color: #fff;">Display info from the Currency Exchange Market.</small></h1>
 
                 </div>
 
@@ -578,7 +578,7 @@
                         <%
                                for (int i = 0; i < list.size(); i++ ){
                             
-                                   %><button type="button" name="<%=list.get(i).nameOfFeeder%>" class=" btn btn-primary active allJsonButtons" role="button">
+                                   %><button type="button" name="<%=list.get(i).nameOfFeeder%>" class="btn btn-primary allJsonButtons" role="button">
                                     <%=list.get(i).nameOfFeeder%>
                                     </button><%
                             
