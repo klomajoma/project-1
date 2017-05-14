@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 public class DataTruck {
 	
 	public static ArrayList<Feeder> feeders;
-	public static boolean deletion = false;
 
 	public static void run() {
 		
@@ -21,12 +20,6 @@ public class DataTruck {
 		
 		feeders.add(new Feeder(name, link));
 
-	}
-	
-	public static void deleteAll(HttpSession session) {
-		
-        feeders = new ArrayList<Feeder>(); 
-        session.setAttribute("feeders", DataTruck.feeders);
 	}
 
 }

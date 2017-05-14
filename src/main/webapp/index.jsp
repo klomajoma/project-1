@@ -3,11 +3,11 @@
 <%@ page import="com.mashape.unirest.http.JsonNode" %>
 <%@ page import="com.mashape.unirest.http.HttpResponse" %>
 <%@ page import="java.util.ArrayList" %>
-<%DataTruck.run();%>
-    
+
 <%
 
     if(session.getAttribute("feeders") == null) {
+        DataTruck.run();
         session.setAttribute("feeders", DataTruck.feeders);
     } else {
         //session variable already exists!
@@ -266,11 +266,20 @@
                 
                 <!-- Add Data -->
                 <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                    
-                    <button onclick='<% DataTruck.deleteAll(session); %>' 
-                    style="margin-left: 5px;" type="button" class="btn btn-sm btn-danger pull-right" role="button">
+
+                    <form action="" method="post">
+                        <input type="hidden" name="deleteConfirmed" value="test">
+                        <button type="submit" style="margin-left: 5px;"class="btn btn-sm btn-danger pull-right" role="button">
                         <b id="viewJsonBtn" style="font-weight: 500;">Delete All Data</b>
                     </button>
+
+                    </form>
+
+                    <% if(request.getAttribute("deleteConfirmed") != null) {
+                        session.setAttribute("feeders", DataTruck.feeders);
+                        DataTruck.feeders = new ArrayList<Feeder>();
+
+                    }%>
                     
                     <button id="toggleJson" style="margin-left: 5px;" type="button" class="btn btn-sm btn-primary pull-right" role="button">
                         <b id="viewJsonBtn" style="font-weight: 500;">View Raw JSON</b>
@@ -345,7 +354,6 @@
                                 String name = request.getParameter("dataName");
                                 String link = request.getParameter("apiLink");
                            
-                                //DataTruck.addData(name,link);
                                ((ArrayList<Feeder>)session.getAttribute("feeders")).add(new Feeder(name,link));
                            }
                            
