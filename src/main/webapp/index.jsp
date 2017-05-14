@@ -7,7 +7,11 @@
     
 <%
 
-   session.setAttribute("feeders", DataTruck.feeders);
+    if(session.getAttribute("feeders") == null) {
+        session.setAttribute("feeders", DataTruck.feeders);
+    } else {
+        //session variable already exists!
+    }
    
 %>
 
@@ -338,8 +342,8 @@
                                 String name = request.getParameter("dataName");
                                 String link = request.getParameter("apiLink");
                            
-                                DataTruck.addData(name,link);
-                            
+                                //DataTruck.addData(name,link);
+                               ((ArrayList<Feeder>)session.getAttribute("feeders")).add(new Feeder(name,link));
                            }
                            
                         %>
@@ -373,18 +377,19 @@
 
                             -->
                             <%
-                            int s = DataTruck.feeders.size();
-                            for (int i = 0; i < s ; i++) {
-                                int jsonArrSize = DataTruck.feeders.get(i).htmlJsonArray.length-2;
+                                ArrayList<Feeder> list = ((ArrayList<Feeder>)session.getAttribute("feeders"));
+
+                            for (int i = 0; i < list.size() ; i++) {
+                                int jsonArrSize = list.get(i).htmlJsonArray.length-2;
                                 if ( i == 0 ) {
                             
                             %>
                             
-                                <table id="showingJson" class="<%=DataTruck.feeders.get(i).nameOfFeeder%> table table-bordered table-striped table-hover allJsonContainers">
+                                <table id="showingJson" class="<%=list.get(i).nameOfFeeder%> table table-bordered table-striped table-hover allJsonContainers">
 
                                     <thead>
                                         <tr>
-                                        <td colspan="2">Exchange Rates, Updated <%=DataTruck.feeders.get(i).htmlJsonArray[1]%></td>
+                                        <td colspan="2">Exchange Rates, Updated <%=list.get(i).htmlJsonArray[1]%></td>
                                         </tr>
                                     </thead>
 
@@ -397,7 +402,7 @@
 
                                             <!-- Use text alignment like text-center or text-right -->
                                             <th class="text-center">
-                                                <%=DataTruck.feeders.get(i).htmlJsonArray[DataTruck.feeders.get(i).htmlJsonArray.length-1]%>
+                                                <%=list.get(i).htmlJsonArray[list.get(i).htmlJsonArray.length-1]%>
                                             </th>
 
                                         </tr>
@@ -412,9 +417,9 @@
                                         <tr>
                                             <td>
                                                 
-                                                <a href="https://www.google.se/search?q=<%=DataTruck.feeders.get(i).htmlJsonArray[i]%>+Currency">
+                                                <a href="https://www.google.se/search?q=<%=list.get(i).htmlJsonArray[i]%>+Currency">
                                                     
-                                                    <%=DataTruck.feeders.get(i).htmlJsonArray[j]%>
+                                                    <%=list.get(i).htmlJsonArray[j]%>
                                                         
                                                 </a>
                                                     
@@ -424,7 +429,7 @@
                                            
                                            %>        
                                                 
-                                            <td><%=DataTruck.feeders.get(i).htmlJsonArray[j]%></td>
+                                            <td><%=list.get(i).htmlJsonArray[j]%></td>
                                         </tr>
                                                 
                                         <% 
@@ -443,11 +448,11 @@
                                } else { %>
                                
 
-                                <table class="<%=DataTruck.feeders.get(i).nameOfFeeder%> table table-bordered table-striped table-hover allJsonContainers">
+                                <table class="<%=list.get(i).nameOfFeeder%> table table-bordered table-striped table-hover allJsonContainers">
 
                                     <thead>
                                         <tr>
-                                        <td colspan="2">Exchange Rates, Updated <%=DataTruck.feeders.get(i).htmlJsonArray[1]%></td>
+                                        <td colspan="2">Exchange Rates, Updated <%=list.get(i).htmlJsonArray[1]%></td>
                                         </tr>
                                     </thead>
 
@@ -460,7 +465,7 @@
 
                                             <!-- Use text alignment like text-center or text-right -->
                                             <th class="text-center">
-                                                <%=DataTruck.feeders.get(i).htmlJsonArray[DataTruck.feeders.get(i).htmlJsonArray.length-1]%>
+                                                <%=list.get(i).htmlJsonArray[list.get(i).htmlJsonArray.length-1]%>
                                             </th>
 
                                         </tr>
@@ -474,9 +479,9 @@
                                         <tr>
                                             <td>
                                                 
-                                                <a href="https://www.google.se/search?q=<%=DataTruck.feeders.get(i).htmlJsonArray[i]%>+Currency">
+                                                <a href="https://www.google.se/search?q=<%=list.get(i).htmlJsonArray[i]%>+Currency">
                                                     
-                                                    <%=DataTruck.feeders.get(i).htmlJsonArray[j]%>
+                                                    <%=list.get(i).htmlJsonArray[j]%>
                                                         
                                                 </a>
                                                     
@@ -486,7 +491,7 @@
                                            
                                            %>        
                                                 
-                                            <td><%=DataTruck.feeders.get(i).htmlJsonArray[j]%></td>
+                                            <td><%=list.get(i).htmlJsonArray[j]%></td>
                                         </tr>
                                                 
                                         <% 
@@ -530,18 +535,18 @@
                         
                             <%
                               
-                               for (int i = 0; i < s; i++ ){
+                               for (int i = 0; i < list.size(); i++ ){
                             
                                     if( i == 0 ) {
                             
-                                       %><div id="showingJson" class="<%=DataTruck.feeders.get(i).nameOfFeeder%> well allJsonContainers">
-                                        <%=DataTruck.feeders.get(i).prettyJsonString%>
+                                       %><div id="showingJson" class="<%=list.get(i).nameOfFeeder%> well allJsonContainers">
+                                        <%=list.get(i).prettyJsonString%>
                                             </div><%
                                                  
                                     } else {
                                                  
-                                        %><div class="<%=DataTruck.feeders.get(i).nameOfFeeder%> well allJsonContainers">
-                                        <%=DataTruck.feeders.get(i).prettyJsonString%>
+                                        %><div class="<%=list.get(i).nameOfFeeder%> well allJsonContainers">
+                                        <%=list.get(i).prettyJsonString%>
                                             </div><%
                                             
                                     }
@@ -571,10 +576,10 @@
 
                         
                         <%
-                               for (int i = 0; i < s; i++ ){
+                               for (int i = 0; i < list.size(); i++ ){
                             
-                                   %><button type="button" name="<%=DataTruck.feeders.get(i).nameOfFeeder%>" class=" btn btn-primary active allJsonButtons" role="button">
-                                    <%=DataTruck.feeders.get(i).nameOfFeeder%>
+                                   %><button type="button" name="<%=list.get(i).nameOfFeeder%>" class=" btn btn-primary active allJsonButtons" role="button">
+                                    <%=list.get(i).nameOfFeeder%>
                                     </button><%
                             
                                 }
