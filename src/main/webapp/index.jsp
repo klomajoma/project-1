@@ -18,7 +18,6 @@
 <!DOCTYPE HTML>
 
 <html>
-
     <head>
 
         <meta charset="UTF-8">
@@ -194,8 +193,8 @@
     </head>
     
     <body>
-            
-        <div id="pageHeader">
+
+    <div id="pageHeader">
             
             <div class="container">
 
@@ -267,7 +266,7 @@
                 <!-- Add Data -->
                 <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
 
-                    <form action="" method="post">
+                    <form action="/" method="post">
                         <input type="hidden" name="deleteConfirmed" value="test">
                         <button type="submit" style="margin-left: 5px;"class="btn btn-sm btn-danger pull-right" role="button">
                         <b id="viewJsonBtn" style="font-weight: 500;">Delete All Data</b>
@@ -275,10 +274,9 @@
 
                     </form>
 
-                    <% if(request.getAttribute("deleteConfirmed") != null) {
-                        session.setAttribute("feeders", DataTruck.feeders);
+                    <% if(request.getParameter("deleteConfirmed") != null) {
                         DataTruck.feeders = new ArrayList<Feeder>();
-
+                        session.setAttribute("feeders", DataTruck.feeders);
                     }%>
                     
                     <button id="toggleJson" style="margin-left: 5px;" type="button" class="btn btn-sm btn-primary pull-right" role="button">
