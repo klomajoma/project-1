@@ -269,7 +269,7 @@
                     <form action="/" method="post">
                         <input type="hidden" name="deleteConfirmed" value="test">
                         <button type="submit" style="margin-left: 5px;"class="btn btn-sm btn-danger pull-right" role="button">
-                        <b id="viewJsonBtn" style="font-weight: 500;">Delete All Data</b>
+                        <b style="font-weight: 500;">Delete All Data</b>
                     </button>
 
                     </form>
@@ -488,7 +488,7 @@
                                         <tr>
                                             <td>
                                                 
-                                                <a href="https://www.google.se/search?q=<%=list.get(i).htmlJsonArray[i]%>+Currency">
+                                                <a href="https://www.google.se/search?q=<%=list.get(i).htmlJsonArray[j]%>+Currency">
                                                     
                                                     <%=list.get(i).htmlJsonArray[j]%>
                                                         
