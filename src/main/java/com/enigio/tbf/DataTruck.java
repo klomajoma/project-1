@@ -1,7 +1,6 @@
 package com.enigio.tbf;
 
 import java.util.ArrayList;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class DataTruck {
