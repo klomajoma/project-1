@@ -2,6 +2,7 @@
 <%@ page import="com.enigio.tbf.Feeder" %>
 <%@ page import="com.mashape.unirest.http.JsonNode" %>
 <%@ page import="com.mashape.unirest.http.HttpResponse" %>
+<%@ page import="java.util.ArrayList" %>
 <%DataTruck.run();%>
     
 <%
@@ -190,8 +191,7 @@
     
     <body>
         
-        <p><%= session.getAttribute("feeders") %></p>
-            
+        <p><%= ((ArrayList<Feeder>)session.getAttribute("feeders")).get(0).nameOfFeeder %></p>
             
         <div id="pageHeader">
             
