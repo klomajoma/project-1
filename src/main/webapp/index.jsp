@@ -262,11 +262,16 @@
             <div class="row jumbotron">
                 
                 <!-- DUMMY ELEMENT -->
-                <div class="col-lg-7 col-md-7 col-sm-5 col-xs-4"></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
                 
                 <!-- Add Data -->
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8">
-                
+                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                    
+                    <button onclick='<% DataTruck.deleteAll(session); %>' 
+                    style="margin-left: 5px;" type="button" class="btn btn-sm btn-danger pull-right" role="button">
+                        <b id="viewJsonBtn" style="font-weight: 500;">Delete All Data</b>
+                    </button>
+                    
                     <button id="toggleJson" style="margin-left: 5px;" type="button" class="btn btn-sm btn-primary pull-right" role="button">
                         <b id="viewJsonBtn" style="font-weight: 500;">View Raw JSON</b>
                     </button>
@@ -278,7 +283,7 @@
                 </div>
                 
                 <!-- DUMMY ELEMENT -->
-                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0"></div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
                 
                 <br>
                 <br>
