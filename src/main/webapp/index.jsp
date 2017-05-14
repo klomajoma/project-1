@@ -194,8 +194,6 @@
     </head>
     
     <body>
-        
-        <p><%= ((ArrayList<Feeder>)session.getAttribute("feeders")).get(0).nameOfFeeder %></p>
             
         <div id="pageHeader">
             
