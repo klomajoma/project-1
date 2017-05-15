@@ -3,15 +3,17 @@
 <%@ page import="com.mashape.unirest.http.JsonNode" %>
 <%@ page import="com.mashape.unirest.http.HttpResponse" %>
 <%@ page import="java.util.ArrayList" %>
-
+<% DataTruck.run(); %>
+    
 <%
 
-    if(session.getAttribute("feeders") == null) {
-        DataTruck.run();
+   if(session.getAttribute("feeders") == null) {
+        
         session.setAttribute("feeders", DataTruck.feeders);
-    } else {
+   
+   } else {
         //session variable already exists!
-    }
+   }
    
 %>
 
@@ -386,7 +388,7 @@
 
                             -->
                             <%
-                                ArrayList<Feeder> list = ((ArrayList<Feeder>)session.getAttribute("feeders"));
+                            ArrayList<Feeder> list = ((ArrayList<Feeder>)session.getAttribute("feeders"));
 
                             for (int i = 0; i < list.size() ; i++) {
                                 int jsonArrSize = list.get(i).htmlJsonArray.length-2;
