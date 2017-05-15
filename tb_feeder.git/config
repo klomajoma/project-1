@@ -5,4 +5,4 @@
 	ignorecase = true
 	precomposeunicode = true
 [remote "origin"]
-	url = https://git.enigio.com/git/tb_feeder.git
+	url = https://github.com/klomajoma/project-1
